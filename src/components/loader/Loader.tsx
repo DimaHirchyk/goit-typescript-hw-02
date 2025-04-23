@@ -1,7 +1,9 @@
 import { BarLoader } from "react-spinners";
 import css from "./loader.module.css";
 
-export default function Loader({ loading }) {
+type Props = { loading: boolean };
+
+export default function Loader({ loading }: Props) {
   return (
     <>
       <BarLoader
@@ -9,7 +11,7 @@ export default function Loader({ loading }) {
         loading={loading}
         height="7px"
         width="300px"
-        speedMultiplier="0.5"
+        speedMultiplier={0.5}
       />
     </>
   );

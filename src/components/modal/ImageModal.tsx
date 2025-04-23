@@ -1,8 +1,15 @@
 import Modal from "react-modal";
 import { IoClose } from "react-icons/io5";
 import css from "./ImageModal.module.css";
+import { UnsplashPhoto } from "../fetch/FetchFoto";
 
-export default function ImageModal({ isOpen, onClose, photo }) {
+type Props = {
+  isOpen: boolean;
+  onClose: () => void;
+  photo: UnsplashPhoto;
+};
+
+export default function ImageModal({ isOpen, onClose, photo }: Props) {
   if (!photo) return;
   return (
     <>

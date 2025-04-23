@@ -1,3 +1,5 @@
+import React from "react";
+
 import LoadMoreBtn from "./button/LoadMoreBtn";
 import ErrorMessage from "./error/ErrorMessage";
 import ImageGallery from "./gallery/ImageGallery";
@@ -8,27 +10,16 @@ import { fetchFotoWithTopic } from "./fetch/FetchFoto";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast/headless";
 
-// const customStyles = {
-//   content: {
-//     top: "50%",
-//     left: "50%",
-//     right: "auto",
-//     bottom: "auto",
-//     marginRight: "-50%",
-//     transform: "translate(-50%, -50%)",
-//   },
-// };
-
-function App() {
-  const [fotos, setFoto] = useState([]);
+const App: React.FC = () => {
+  const [fotos, setFoto] = useState<any>([]);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [selectFoto, setSelectFoto] = useState(null);
+  const [selectFoto, setSelectFoto] = useState<any>(null);
 
-  function openModal(photo) {
+  function openModal(photo: any) {
     setSelectFoto(photo);
     setIsOpen(true);
   }
@@ -47,8 +38,8 @@ function App() {
         setLoading(true);
 
         const data = await fetchFotoWithTopic(query, page);
-        setFoto((prev) => [...prev, ...data.results]);
-      } catch (error) {
+        setFoto((prev: any) => [...prev, ...data.results]);
+      } catch {
         setError(true);
         toast.error("This didn't work.");
       } finally {
@@ -58,7 +49,7 @@ function App() {
     fetchFoto();
   }, [query, page]);
 
-  const handleSearch = (topic) => {
+  const handleSearch = (topic: string) => {
     setPage(1);
     setQuery(topic);
     setFoto([]);
@@ -85,6 +76,6 @@ function App() {
       />
     </>
   );
-}
+};
 
 export default App;

@@ -1,7 +1,20 @@
 import ImageCard from "../imgCard/ImageCard";
 import css from "./ImageGallery.module.css";
 
-export default function ImageGallery({ images, onClick }) {
+export type Image = {
+  id: string;
+  alt_description: string;
+  urls: {
+    small: string;
+  };
+};
+
+type Props = {
+  images: Image[];
+  onClick: (image: Image) => void;
+};
+
+export default function ImageGallery({ images, onClick }: Props) {
   return (
     <>
       <ul className={css.list}>

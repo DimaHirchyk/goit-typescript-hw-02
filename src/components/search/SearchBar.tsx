@@ -1,10 +1,15 @@
 import toast, { Toaster } from "react-hot-toast";
 import css from "./Searchbar.module.css";
+import { FormEvent } from "react";
 
-export default function Searchbar({ onSearch }) {
-  const handleSubmit = (e) => {
+type Props = {
+  onSearch: (topic: string) => void;
+};
+
+export default function Searchbar({ onSearch }: Props) {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const form = e.target;
+    const form = e.target as HTMLFormElement;
     const topic = form.elements.inp.value.trim();
     if (topic === "") {
       toast.error("Введіть текст");
