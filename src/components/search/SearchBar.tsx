@@ -7,13 +7,21 @@ type Props = {
 };
 
 export default function Searchbar({ onSearch }: Props) {
-  const handleSubmit = (e: FormEvent) => {
+  // function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  //   event.preventDefault();
+  //   const form = event.currentTarget;
+  //   const input = form.elements.namedItem("inp") as HTMLInputElement;
+  //   console.log(input.value);
+  // }
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
-    const topic = form.elements.inp.value.trim();
+    const topic = (
+      form.elements.namedItem("inp") as HTMLInputElement
+    ).value.trim();
     if (topic === "") {
       toast.error("Введіть текст");
-
       return;
     }
 
