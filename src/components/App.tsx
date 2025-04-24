@@ -6,18 +6,18 @@ import ImageGallery from "./gallery/ImageGallery";
 import Loader from "./loader/Loader";
 import ImageModal from "./modal/ImageModal";
 import Searchbar from "./search/SearchBar";
-import { fetchFotoWithTopic } from "./fetch/FetchFoto";
+import { fetchFotoWithTopic, UnsplashPhoto } from "./fetch/FetchFoto";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast/headless";
 
 const App: React.FC = () => {
-  const [fotos, setFoto] = useState<any>([]);
+  const [fotos, setFoto] = useState<UnsplashPhoto[]>([]);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [selectFoto, setSelectFoto] = useState<any>(null);
+  const [selectFoto, setSelectFoto] = useState<UnsplashPhoto | null>(null);
 
   function openModal(photo: any) {
     setSelectFoto(photo);
@@ -38,7 +38,7 @@ const App: React.FC = () => {
         setLoading(true);
 
         const data = await fetchFotoWithTopic(query, page);
-        setFoto((prev: any) => [...prev, ...data.results]);
+        setFoto((prev) => [...prev, ...data.results]);
       } catch {
         setError(true);
         toast.error("This didn't work.");

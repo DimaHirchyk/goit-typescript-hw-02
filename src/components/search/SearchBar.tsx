@@ -7,13 +7,6 @@ type Props = {
 };
 
 export default function Searchbar({ onSearch }: Props) {
-  // function handleSubmit(event: FormEvent<HTMLFormElement>) {
-  //   event.preventDefault();
-  //   const form = event.currentTarget;
-  //   const input = form.elements.namedItem("inp") as HTMLInputElement;
-  //   console.log(input.value);
-  // }
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;

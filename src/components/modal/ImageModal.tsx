@@ -6,7 +6,7 @@ import { UnsplashPhoto } from "../fetch/FetchFoto";
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  photo: UnsplashPhoto;
+  photo: UnsplashPhoto | null;
 };
 
 export default function ImageModal({ isOpen, onClose, photo }: Props) {
